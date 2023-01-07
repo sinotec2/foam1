@@ -4,7 +4,7 @@ title: 自動添加並啟用IP黑名單
 parent:   Operation System
 grand_parent: Utilities
 last_modified_date: 2022-04-28 10:09:48
-tags: macOS UserGuide
+tags: macOS UserGuide crontab pandas httpd
 ---
 
 # 自動添加並啟用IP黑名單
@@ -19,9 +19,10 @@ tags: macOS UserGuide
 ---
 
 ## 背景
+
 - 開設了httpd之後，即使是最沒有什麼可以駭的html形式，仍然吸引不少駭客前來挑戰，從硬碟下載不少空品模式方面的數據檔。不知道駭客們下載數百G數據回去後，會不會罵我放這麼多東西來浪費他們的時間、空間。
 - 其實我也蠻心疼他們的時間的，因為家裏的網路是非對稱，上載的速度是非常慢的，而且也讓Mac電腦沒事在空轉。最重要的會癱瘓網路的其他功能，讓我沒有興趣繼續發展遠端模擬系統。
-- 2022-04-23打算不再糾結了，爬了一些網友的建議，決定還是自己來寫一個[自動添加並啟用IP黑名單]()的作業系統。
+- 2022-04-23打算不再糾結了，爬了一些網友的建議，決定還是自己來寫一個[[自動添加並啟用IP黑名單]]的作業系統。
 - 基本上，Mac不像Linux有[iptable](https://zh.wikipedia.org/wiki/Iptables)這麼靈活的防火牆程式
   - ***系統偏好設定*** 中的防火牆沒法在日常的實務中幫上什麼忙，還是需要自己分析、自己添加黑名單、讓root來定期檢討啟用，才能即時阻擋駭客的騷擾。
   - 即使是商業軟體(如[spamhaus](https://www.spamhaus.org/))提供的[黑名單](https://www.spamhaus.org/drop/drop.lasso)，更新頻率也是一天一次，似乎也無法幫上忙。
@@ -114,6 +115,7 @@ lines=[i for i in lines if len(i)>1]
 fname='~/bin/BlockIP/IP_count'+TF.replace('/','_')+'.csv'
 r=wrt_csv(lines,fname)
 ```
+
 - head of IP_count.csv，可以看到iMac是如何被駭客蹂躪
 
 |ip|date|count|location|
@@ -129,6 +131,7 @@ r=wrt_csv(lines,fname)
 |114.84.195.13|1|989|Shanghai|
 
 ## 防止駭客侵擾的策略方法
+
 - 其實知道網站被駭客盯上，關閉就可以了。這是過去iMac只在上班時間開放的理由。但還是有困難：
   - 非上班時間，還是有正常使用的需求。這要怪華人焚膏繼晷的民族精神。
   - 上班時間駭客從正常使用的通訊過程得知iMac的存在，也大方的造訪。不僅沒有防護、而且嚴重降低網路的速度
@@ -140,6 +143,7 @@ r=wrt_csv(lines,fname)
   - 只要能夠確認IP存取過程確實是駭客的無聊行為，即使黑名單策略較為嚴苛應該也不為過。
 
 ### 封包過濾 PFctl程式
+
 - Mac自帶封包過濾的控制程式PFctl,可以做為動態[阻擋IP黑名單](https://medium.com/ringcentral-developers/how-to-block-a-particular-ip-address-on-mac-a587805972e5)的主程式。
 - pfctl是透過/etc/pf.conf檔案來指定黑名單IP。
 - 其設定方式為：`block drop from any to 192.168.1.1`
@@ -147,7 +151,9 @@ r=wrt_csv(lines,fname)
 - 因為是命令列就可以完成的工作，適合用來定期執行。
 
 ## 作業系統
+
 ### 每小時分析程式
+
 - 使用grep指令，篩出過去一個小時的存取記錄。grep內設有顏色，會出現亂碼，需要關閉。
 - 以[osascript](https://support.apple.com/zh-tw/guide/terminal/trml1003/mac)出現在consol的對話框來提醒注意
 - 將每個存取超過500次的IP列到pf.conf檔案裏
@@ -182,8 +188,9 @@ if mip>500:
 ```
 
 ### crontab設定
+
 - 設定逐時檢討。
-- 因為必須改變PF狀態，需要以root權限執行crontab
+- 因為必須改變PF狀態，需要以root權限執行crontab(see [[mac_crontab#as root]])
 
 ```bash
 #check the acc # >500/hr and block them
@@ -191,6 +198,7 @@ if mip>500:
 ```
 
 ## Result
+
 - 希望最好不要看到對話框出現
 - 4/27清晨真的啟動了機制，一個小時就存取了近2000次，這應該沒有錯怪它了。
 - 其餘的好兄弟試了1\~2次就會放棄
@@ -203,7 +211,9 @@ if mip>500:
 |14.225.253.120|1|1|Hạ Long|
 
 ## 修正作法：外部黑名單
+
 ### 精進的必要與步驟
+
 - 因$web之權限開放，前述pf rule 也不正確，致駭客還是來訪。作法需精進。
   - 先關閉$web之讀取、執行權限。此舉阻擋大多數的惡意瀏覽。
   - 新增pf.conf的規則
@@ -236,11 +246,13 @@ block on $ext_if from { <badips> } to any
 ```
 
 ### 外部黑名單
+
 - 黑名單之外部檔案：/Users/kuang/bin/BlockIP/pf.blocked.ip.conf
   - 參考[ken](https://bbken.org/author/ken/page/3/?PageSpeed=noscript)的建議名單，大多是中國大陸的平台網站。
 
 ### 修改python程式
-  - 將前述ana_accHr.py 修正成下述：
+
+- 將前述ana_accHr.py 修正成下述：
 
 ```python
 kuang@114-32-164-198 ~/bin/BlockIP
@@ -259,6 +271,7 @@ $ tail ana_accHr.py
 ```
 
 ## Reference
+
 - 阿百, [自動透過 iptables 封鎖 IP 黑名單](http://yenpai.idis.com.tw/archives/399-教學-自動透過-iptables-封鎖-ip-黑名單), 2012 年 11 月 12 日
 - Vyshakh Babji, [Block Access to Particular IP Address on Mac](https://medium.com/ringcentral-developers/how-to-block-a-particular-ip-address-on-mac-a587805972e5), Jul 3, 2019
 - pfctl: Packet Filter Control

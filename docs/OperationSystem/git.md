@@ -4,6 +4,7 @@ title: git and github
 parent:   Operation System
 grand_parent: Utilities
 last_modified_date: 2022-06-13 09:02:53
+tags: git github crontab unix_command
 ---
 
 {: .no_toc }
@@ -15,7 +16,9 @@ last_modified_date: 2022-06-13 09:02:53
 {:toc}
 
 ---
+
 # git and github
+
 ## 背景
 
 - WHAT
@@ -27,11 +30,12 @@ last_modified_date: 2022-06-13 09:02:53
   - 對於定期上/下載作業，還是得依賴工作站crontab以及命令列的git指令。目前[GitHub Desktop]()並沒有定期上下載功能。
   - 有關github.io網站的優缺點，在[這篇](https://gitbook.tw/chapters/github/using-github-pages)有詳細的討論，雖然不接受複雜的PHP或ASP技巧，但是基本的JS還是可以接受的。頻寬也蠻理想的，符合此處之需求。
 
-
 ## git定期上載
+
 - 這項作業的需求是每一天將工作站模式預測模擬結果上載到github.io特定目錄下。此處以[cpuff_forecast](https://sinotec2.github.io/cpuff_forecast/)為例。
 
 ### 困難點
+
 - [github page](https://pages.github.com/)的創設：太多可行的方案，讓人無所適從。目前最流暢方案：
   1. 登入github.com網站以其網站對話框界面開設repository(先不要上傳檔案)
   1. 回到本機使用desktop將新的repository在本機(透過網路磁碟機連到工作站)clone一份(空的)，**注意**要指定到PC及工作站可以同時存取的目錄位置。
@@ -50,6 +54,7 @@ last_modified_date: 2022-06-13 09:02:53
     - $DEPOSITORY在此次範例為sinotec2.github.io
 
 ### [Run.sh](https://sinotec2.github.io/Focus-on-Air-Quality/TrajModels/CALPUFF/Forecast/#網站與播放器)中有關git的部分
+
 - 須至repository目錄下執行
 - 先登記此次的更新內容：新增檔案(git add path/file)
 - 此次更新的標題訊息：git commit -m "..." (注意必須是**雙引號**)
@@ -69,6 +74,7 @@ if [ -e PMF.gif ];then
   cd $cwd
 fi
 ```
+
 ### 定期更新cmaq執行進度
 
 - 基本上只是個`grepDDD=grep DDD $(ls -rt CTM_LOG_000*|tail -n1)|tail -n1)`指令，顯示CTM_LOG的最後日期標籤。
@@ -163,6 +169,7 @@ if [ $lastMD != $newsMD ]; then
 fi
 if [ -e $d/index.mde ];then rm $d/index.mde;fi
 ```
+
 - What'sNew 的hyperlink 不是指定到.md檔，.md檔案在另外的github位置，github.io已經將其內容編譯成github.io的index.html，成為該.md檔案專屬特定的目錄。
 - index.md單獨上載，比較單純，前提是要將所有的上下載都已經完成。
 - dos系統不能適用
@@ -171,7 +178,8 @@ if [ -e $d/index.mde ];then rm $d/index.mde;fi
 [1]: <https://unix.stackexchange.com/questions/378990/find-and-replace-with-sed-with-slash-in-find-and-replace-string> "Not sure if you know, but sed has a great feature where you do not need to use a / as the separator. So, your example could be written as: sed -i 's#/var/www#/home/lokesh/www#g' lks.php It does not need to be a # either, it could be any single character. For example, using a 3 as the separator: echo 'foo' | sed 's3foo3bar3g' bar"
 
 ## Reference
+
 - wiki, [git](https://zh.wikipedia.org/wiki/Git), 页面最后修订于2022年3月23日 (星期三) 22:58。
 - wiki, [github.com](https://zh.wikipedia.org/zh-tw/GitHub)，頁面最後修訂於2022年3月3日 (星期四) 06:07。
--  高見龍、[使用 GitHub 免費製作個人網站](https://gitbook.tw/chapters/github/using-github-pages)
+- 高見龍、[使用 GitHub 免費製作個人網站](https://gitbook.tw/chapters/github/using-github-pages)
 - 唯鹿、[使用personal access token進行Github認證](https://iter01.com/611911.html) 發表於 2021-08-16

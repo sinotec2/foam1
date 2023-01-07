@@ -206,49 +206,7 @@ graph LR
 
 ## [GitHub][gh]簡介
 
-- 雖然[GitHub][gh]平台大量提供了有關程式碼的支援，包括版本管理、協作系統、論壇、以及程式說明的發布網站([github pages][ghpg])等等，但也有不少人運用在一般性網誌的發布、程式教學的互動平台。
-- 因為是社群媒體網站，發布內容還是以社群可能會有興趣的項目為主。
-- 各國官方程式碼的公開平台，很多也是選擇在[GitHub][gh]發布，其中包括美國環保署、大氣研究聯盟等等。
-- 除了[github pages][ghpg]之外，也開發了[Git Book][gbook]系統，免費提供讓個人使用，讓使用者可以發布整本書的內容。
-
-### [GitHub][gh]的使用
-
-1. 登錄會員
-1. 創建新的目錄(Repository)、設定開放對象、複製網址（假設名稱為notes）
-1. 貼在本地GitHub DeskTop、創建本地相對應目錄
-1. 開啟[VS Code][vsc_wiki]進行檔案或目錄新增、編寫
-1. 上推至[GitHub][gh]
-
-### 公開網頁[github pages][ghpg]之創建
-
-1. 點進前述步驟2.所建立的[GitHub][gh] notes目錄
-1. 按下齒輪 Settings頁面，在左側點進Pages頁面，選擇一個分支(branch)名稱,如main
-,並在root處鍵入新io網頁的名稱（如`docs`）,按下save之後，系統將會建立https://USERNAME.github.io/notes 網頁
-1. 複製網頁模版到本地暫存目錄、貼到本地Repository目錄，將所有個別帳戶名稱處都修改成正確的url，再將其上推至[GitHub][gh]。
-1. [GitHub][gh]將會自行將md碼編譯成html，建立相對應的網頁。
-1. 如果前述notes目錄不打算公開，就不必（也不能）設定[github pages][ghpg]
-1. 詳參[Just the Docs](https://github.com/just-the-docs/just-the-docs)
-
-### [github pages][ghpg]模版之選擇
-
-- 參考[jekyll主題版本比較評估](https://sinotec2.github.io/FAQ/2022/06/24/NotesAboutPageViews.html#jekyll主題版本比較評估)，以[JTD](https://just-the-docs.github.io/just-the-docs)與[TeXt](https://tianqi.name/jekyll-TeXt-theme/)較為合用。
-
-### 本地git界面的選擇
-
-- [git][git]作為是遠端與本地檔案及版本管理的程式，可以在任何unix-like界面、window命令列上執行，同時也有多個界面軟體可供選擇。如(參[DEVART, 2021, Best Git GUI Clients for Windows](https://blog.devart.com/best-git-gui-clients-for-windows.html))：
-  1. [GitHub Desktop](https://desktop.github.com/)
-  1. 其他[GUI Clients](https://git-scm.com/downloads/guis) tools
-  1. [SmartGit](https://www.syntevo.com/smartgit/)
-- 選擇[GitHub Desktop](https://desktop.github.com/)的理由
-  1. [VS Code][vsc_wiki]內部的git功能會需要最新的.Net程式與設定，需要更新windown版本，這對本地作業平台的管理是項挑戰。因此[VS Code][vsc_wiki]外部簡易的git GUI有其必要。
-  1. GitHub官方維護、發展、推荐
-  1. 如果是單一檔案的更新，會自動代出檔案名稱作為更新批次標籤
-  1. 記憶體需求量低
-
-### [GitHub][gh]的缺點
-
-- .md檔案可以直接在Repository中呈現，但在公開的Github Pages上呈現會需要編譯部署的時間，複雜的系統可能會花費到5 ～ 10 分鐘以上。
-- 下班時間公司會關閉[GitHub][gh]部分功能、不能進行檔案更新上載。對於長時間工作的程式發展者而言是項嚴重的限制。
+- 其使用、[Page][ghpg]的形成、以及使用上遭遇困難，詳見[[github]]
 
 ## 標記式(MarkDown)語言
 

@@ -11,3 +11,5 @@ tags: crontab Linux
 #WRF forecasting from gfs and CWBWRF results
 0 3 * * * /nas1/backup/data/NOAA/NCEP/GFS/YYYY/fcst_dev2.cs >& /nas1/backup/data/NOAA/NCEP/GFS/YYYY/fcst_dev2.out
 ```
+
+- 引用：[[unix環境中的自動排程cron]]

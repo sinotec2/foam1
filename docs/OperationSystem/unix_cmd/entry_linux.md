@@ -4,6 +4,7 @@ title: linux entry
 parent:   Operation System
 grand_parent: Utilities
 last_modified_date: 2022-12-03 05:34:22
+tags: unix_command
 ---
 
 # linux快速入門

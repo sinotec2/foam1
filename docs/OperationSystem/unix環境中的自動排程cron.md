@@ -174,3 +174,36 @@ HOME=/
 #WRF forecasting from gfs and CWBWRF results
 0 3 * * * /nas1/backup/data/NOAA/NCEP/GFS/YYYY/fcst_dev2.cs >& /nas1/backup/data/NOAA/NCEP/GFS/YYYY/fcst_dev2.out
 ```
+
+### macOS
+
+- act as user
+- 執行批之說明次詳見[[mac_crontab#as User]](包括未開啟項目)
+
+```bash
+#WRF forecasting from gfs and CWBWRF results
+0 3 * * * /nas1/backup/data/NOAA/NCEP/GFS/YYYY/fcst_dev2.cs >& /nas1/backup/data/NOAA/NCEP/GFS/YYYY/fcst_dev2.out
+```
+
+- act as root
+- 執行批之說明次詳見[[mac_crontab#as root]](包括未開啟項目)
+
+```bash
+#remove the mmif_* 2 days ago
+0 0  *  *  * cd /private/tmp;dd=$(/bin/date -j -v-2d +"%Y-%m-%d");for i in $(/usr/local/bin/gls -l --time-style=full-iso|grep mmif_|grep $dd|/opt/local/bin/awkk 9);do rm -fr $i;done
+#remove the *csv* 2 days ago
+0 0  *  *  * cd /Library/WebServer/Documents/trj_results;dd=$(/bin/date -j -v-2d +"%Y-%m-%d");for i in $(/usr/local/bin/gls -l --time-style=full-iso|grep csv|grep $dd|/opt/local/bin/awkk 9);do echo $i;rm -fr $i;done >> /var/log/apache2/access_log
+0 0  *  *  * cd /Library/WebServer/Documents/isc_results;dd=$(/bin/date -j -v-2d +"%Y-%m-%d");for i in $(/usr/local/bin/gls -l --time-style=full-iso|grep _|grep $dd|/opt/local/bin/awkk 9);do echo $i;rm -fr $i;done >> /var/log/apache2/access_log
+0 0  *  *  * cd /tmp/isc;dd=$(/bin/date -j -v-2d +"%Y-%m-%d");for i in $(/usr/local/bin/gls -l --time-style=full-iso|grep $dd|/opt/local/bin/awkk 9);do echo $i;rm -fr $i;done >> /var/log/apache2/access_log
+
+##stop and start of apache
+0  7 *  *  1,2,3,4,5 /usr/local/opt/httpd/bin/httpd -k start
+
+
+## trajectories update
+0  4 *  *  * /Library/WebServer/Documents/trj_results/daily_traj.cs >& /Library/WebServer/Documents/trj_results/daily_traj.out
+
+
+#check the acc # >500/hr and block them
+0 *  *  *  * /Users/kuang/bin/BlockIP/ana_accHr.py >& /Users/kuang/bin/BlockIP/ana_accHr.out
+```

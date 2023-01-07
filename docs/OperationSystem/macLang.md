@@ -3,6 +3,7 @@ layout: default
 title: Mac Fortran/C compiler
 parent:   Operation System
 grand_parent: Utilities
+tags: gcc ifort
 ---
 
 {: .no_toc }
@@ -31,6 +32,7 @@ https://github.com/Unidata/netcdf-fortran/issues/212
 export FCFLAGS="-w -fallow-argument-mismatch -O2"
 export FFLAGS="-w -fallow-argument-mismatch -O2"
 ```
+
 ## Downgrade of gcc
 
 ```bash
@@ -42,5 +44,3 @@ total 0
 lrwxr-xr-x  1 kuang  admin    21B Dec 16 06:18 gcc -> ../Cellar/gcc@9/9.3.0
 lrwxr-xr-x  1 kuang  admin    21B Dec 16 06:18 gcc@9 -> ../Cellar/gcc@9/9.3.0
 ```
-
-

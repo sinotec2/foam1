@@ -3,6 +3,7 @@ layout: default
 title: unix系統小工具
 parent:   Operation System
 grand_parent: Utilities
+tags: unix_command
 ---
 
 {: .no_toc }
