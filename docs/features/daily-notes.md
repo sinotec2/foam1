@@ -2,12 +2,12 @@
 
 Daily notes allow you to quickly create and access notes for today.
 
-Try it out, run the `Foam: Open Daily Note` command.
+Try it out, run the `Foam: Open Daily Note` command(by `shift-ctrl-P` in CODE).
 
 ## Shortcuts and Snippets
 
 You can quickly open today's daily note by pressing `alt+d`.
-You can also automatically open today's note via the `Foam › Open Daily Note: On Startup` setting.
+You can also automatically open today's note via the `Foam › Open Daily Note: On Startup` setting(`ctrl-,`).
 
 You can also quickly create link to your daily notes, in the configured format, using [snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets).
 
