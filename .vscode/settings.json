@@ -17,7 +17,7 @@
   "files.watcherExclude": {
     "**/node_modules": true
   },
-  "foam.edit.linkReferenceDefinitions": ""withExtensions"",
+  "foam.edit.linkReferenceDefinitions":"withExtensions",
   "foam.openDailyNote.directory": "journal",
   "foam.openDailyNote.filenameFormat": "yyyy-mm-dd",
   "foam.openDailyNote.titleFormat": "fullDate",
